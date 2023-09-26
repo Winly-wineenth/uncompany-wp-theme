@@ -1,0 +1,116 @@
+.expandable {
+  display: flex;
+  flex-direction: column;
+  max-width: 271px;
+  --toggle-size: 20px;
+  --toggle-thickness: 2px;
+  --border-thickness: 2px;
+
+  font-family: Radley;
+}
+
+.expandable .toggle:before, .expandable .contents {
+  /* easeOutExpo */
+    transition: all cubic-bezier(0.87, 0, 0.13, 1) 0.4s;
+}
+
+.expandable label, .expandable .contents-container {
+  padding: 0 14px;
+}
+
+.contents .person-title {
+  font-size: 20px;
+  line-height: 118.9%;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.contents .person-bio, .contents a {
+  font-size: 18px;
+  line-height: 118.9%;
+  letter-spacing: 0.36px;
+}
+
+.contents a {
+  color: var(--wp--preset--color--black);
+}
+
+.expandable .bordered:before, .expandable .bordered:after {
+  content: "";
+  display: block;
+  background: black;
+  height: var(--border-thickness);
+  margin: 0.5rem 0;
+  border-radius: calc(var(--border-thickness) / 2);
+}
+
+.expandable img {
+  width: 100%;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.expandable input[type="checkbox"] {
+  display: none;
+}
+
+.expandable label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.expandable .toggle {
+  position: relative;
+  display: block;
+  width: var(--toggle-size);
+  height: var(--toggle-size);
+}
+
+.expandable .toggle:after {
+  content: " ";
+  width: var(--toggle-size);
+  height: var(--toggle-thickness);
+  background: black;
+  display: block;
+  position: absolute;
+  top: calc(var(--toggle-size) / 2.0);
+}
+
+.expandable .toggle:before {
+  content: " ";
+  height: var(--toggle-size);
+  width: var(--toggle-thickness);
+  background: black;
+  display: block;
+  position: absolute;
+  left: calc(var(--toggle-size) / 2.0);
+}
+
+.expandable .contents-container {
+  overflow: hidden;
+}
+
+.expandable .contents {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  gap: 0px;
+  margin-top: -100%;
+  text-align: center;
+}
+
+.expandable input:checked ~ .contents-container .contents {
+  opacity: 1;
+  margin-top: 24px;
+  gap: 26px;
+}
+
+.expandable input:checked ~ label .toggle:before {
+  transform: rotate(90deg);
+  opacity: 0;
+}

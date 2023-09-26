@@ -1,0 +1,119 @@
+.hero-cover {
+  z-index: 190;
+}
+
+header {
+  position: relative;
+  z-index: 200;
+}
+
+.navigation {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  z-index: 999;
+
+  /* Right align the children, like the top/bottom lines */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.navigation-overlay {
+  opacity: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.50);
+  transition: all ease-in-out 0.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+/* never show on desktop */
+@media screen and (max-width: 1024px) {
+  .navigation-overlay.navigation-open {
+    display: block;
+    opacity: 1.0;
+  }
+}
+
+.navigation::before, .navigation::after {
+  content: '';
+  height: 3px;
+  width: 100%;
+  background: white;
+  display: block;
+  border-radius: 1.5px;
+}
+
+.navigation-items {
+  clear:both;
+  width:100%;
+  height:0px;
+  opacity: 0;
+  overflow: hidden;
+  text-align: center;
+  transition: all .4s ease;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-items li {
+  text-align: center;
+  margin-bottom: 33px;
+  padding: 0 11px;
+}
+
+.navigation-items li a {
+  color: #FFF;
+  text-decoration: none;
+  height: var(--navigation-item-height);
+
+  font-family: Raleway;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.6px;
+  text-transform: uppercase;
+}
+
+.navigation.navigation-open .navigation-items {
+  height: 214px;
+  opacity: 1;
+  padding-top: 33px;
+}
+
+@media screen and (max-width: 1024px) {
+  .navigation {
+    right: 10px;
+    top: 11px;
+
+    /* Right align the children, like the top/bottom lines */
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .navigation.navigation-open .navigation-items {
+    height: 174px;
+    padding-top: 21px;
+  }
+
+  .navigation-items li {
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 21px;
+  }
+
+  .navigation::before, .navigation::after {
+    height: 2px;
+    margin: 0;
+    width: 46px;
+  }
+}

@@ -1,0 +1,89 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.3/theme.json",
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "620px",
+			"wideSize": "1000px"
+		},
+		"spacing": {
+			"units": [
+				"%",
+				"px",
+				"em",
+				"rem",
+				"vh",
+				"vw"
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"name": "System Font",
+					"slug": "system-font"
+				},
+				{
+					"fontFamily": "Radley",
+					"slug": "radley",
+					"fontFace": [
+						{
+							"fontFamily": "Radley",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/radley_normal_400.ttf"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Raleway",
+					"slug": "raleway",
+					"fontFace": [
+						{
+							"fontFamily": "Raleway",
+							"fontStyle": "normal",
+							"fontWeight": "900",
+							"src": [
+								"file:./assets/fonts/raleway_normal_900.ttf"
+							]
+						},
+						{
+							"fontFamily": "Raleway",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/raleway_normal_700.ttf"
+							]
+						},
+						{
+							"fontFamily": "Raleway",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/raleway_normal_400.ttf"
+							]
+						}
+					]
+				}
+			]
+		},
+		"useRootPaddingAwareAlignments": true
+	},
+	"templateParts": [
+		{
+			"area": "header",
+			"name": "header"
+		},
+		{
+			"area": "footer",
+			"name": "footer"
+		},
+    {
+      "area": "content",
+      "name": "person"
+    }
+	],
+	"version": 2
+}
