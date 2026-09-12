@@ -14,6 +14,13 @@
   var svg = function (inner) {
     return '<svg viewBox="0 0 140 140" width="100%" height="100%">' + inner + '</svg>';
   };
+  /* 四角・まるの中に入れる顔（中心 68,74 のボディに合わせてある） */
+  var FACE =
+    '<g class="ic-detail">' +
+      '<ellipse cx="48" cy="63" rx="5.6" ry="7.8"/>' +
+      '<ellipse cx="82" cy="63" rx="5.6" ry="7.8"/>' +
+      '<path d="M56,84 Q65,92 74,84" fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/>' +
+    '</g>';
   var face = function (v) { return '<g transform="translate(64,78) scale(' + v + ')"><path d="' + SPARK + '"/></g>'; };
 
   var ICONS = {
@@ -52,6 +59,25 @@
         '<rect x="75" y="58" width="30" height="7" rx="3.5"/>' +
         '<rect x="75" y="74" width="21" height="7" rx="3.5"/>' +
       '</g>'
+    ),
+
+
+    /* ---- キャラクターの形ちがい（A案の中央で比較用） -------------- */
+
+    /* 角丸の四角 */
+    charSquare: svg(
+      '<g class="ic-extrude" transform="translate(9,9)"><rect x="20" y="24" width="90" height="90" rx="28"/></g>' +
+      '<g class="ic-face"><rect x="20" y="24" width="90" height="90" rx="28"/></g>' +
+      FACE +
+      '<g class="ic-face" transform="translate(106,28) scale(0.115)"><path d="' + SPARK + '"/></g>'
+    ),
+
+    /* まる */
+    charCircle: svg(
+      '<g class="ic-extrude" transform="translate(9,9)"><circle cx="65" cy="69" r="45"/></g>' +
+      '<g class="ic-face"><circle cx="65" cy="69" r="45"/></g>' +
+      FACE +
+      '<g class="ic-face" transform="translate(108,26) scale(0.115)"><path d="' + SPARK + '"/></g>'
     ),
 
     /* ---- 線画（B案・C案） ------------------------------------------ */

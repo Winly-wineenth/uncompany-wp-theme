@@ -24,7 +24,7 @@ vp=$("$CHROME" --headless --disable-gpu --no-sandbox --window-size=$W,$H \
 offset=$(( H - ${vp:-$H} ))
 echo "viewport offset: ${offset}px (window-size height = $(( H + offset )))"
 
-for p in a b c; do
+for p in a a2 a3 b c; do
   [ -f "$SRC/pattern-$p.html" ] || continue
   "$CHROME" --headless --disable-gpu --no-sandbox --hide-scrollbars \
     --force-device-scale-factor=1 \
