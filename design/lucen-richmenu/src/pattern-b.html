@@ -1,72 +1,67 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>LUCEN rich menu / B - Deep Green</title>
+<title>LUCEN rich menu / B - Panel</title>
 <link rel="stylesheet" href="base.css">
 <style>
-  /* Pattern B : Deep Green — 中央の相談パネルだけを深緑ベタにし、AI相談を主役にした配色 */
-  body { background: var(--white); }
-  .menu { background: var(--white); }
+  /* B案 : Panel
+     カードを使わず、面を3分割して中央だけ黒ベタに反転。
+     余白と線画で構成した、いちばんコントラストの強い型。AI相談が主役になる。 */
 
-  .cell--green { background: var(--green); }
+  body, .menu { background: var(--white); }
 
-  .art { height: 300px; display: flex; align-items: center; justify-content: center; }
-  .label { margin-top: 54px; }
-  .sub   { margin-top: 30px; }
+  .cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .cell--invert { background: var(--ink); }
 
-  /* 白パネル */
-  .cell--light .icon path,
-  .cell--light .icon circle { stroke: var(--ink); }
-  .cell--light .label { color: var(--ink); }
-  .cell--light .sub   { color: var(--grey); }
+  .icon { width: 196px; height: 196px; }
+  .ic-line { stroke-width: 3.4; }
 
-  /* 深緑パネル */
-  .cell--green .char  { color: #ffffff; }
-  .cell--green .label { color: #ffffff; }
-  .cell--green .sub   { color: rgba(255,255,255,.62); }
-  .cell--green .spark { fill: #ffffff; opacity: .5; }
+  .cell--light .ic-line,
+  .cell--light .ic-face   { color: var(--ink);   }
+  .cell--invert .ic-face  { color: var(--white); }
+  .cell--invert .ic-detail{ color: var(--ink);   }
+
+  .en {
+    font-size: 24px; font-weight: 400;
+    letter-spacing: .46em; text-indent: .46em;
+    margin-top: 58px;
+  }
+  .name {
+    font-size: 62px; font-weight: 500; line-height: 1;
+    letter-spacing: .1em; text-indent: .1em;
+    margin-top: 34px;
+  }
+
+  .cell--light  .en   { color: var(--grey); }
+  .cell--light  .name { color: var(--ink);  }
+  .cell--invert .en   { color: rgba(255,255,255,.55); }
+  .cell--invert .name { color: var(--white); }
 </style>
 
 <div class="menu">
 
-  <!-- ============ 左：LUCEN通販 ============ -->
+  <!-- 左：LUCEN通販 -->
   <div class="cell cell--light">
-    <div class="art">
-      <svg class="icon" width="186" height="186" viewBox="0 0 100 100">
-        <path d="M20,33 H80 L75.5,87 H24.5 Z"/>
-        <path d="M37.5,33 V25.5 A12.5,12.5 0 0 1 62.5,25.5 V33"/>
-      </svg>
-    </div>
-    <div class="label">LUCEN通販</div>
-    <div class="sub">Online Store</div>
+    <div class="icon" data-icon="bagLine"></div>
+    <div class="en">Online Store</div>
+    <div class="name">LUCEN通販</div>
   </div>
 
-  <!-- ============ 中央：なんでも相談 ============ -->
-  <div class="cell cell--green">
-    <div class="art">
-      <svg class="char" width="330" height="330" viewBox="-172 -150 344 300">
-        <path d="M0,-118 Q36,-36 118,0 Q36,36 0,118 Q-36,36 -118,0 Q-36,-36 0,-118 Z"
-              fill="currentColor" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/>
-        <ellipse cx="-30" cy="-8" rx="10.5" ry="15" fill="#1f3d33"/>
-        <ellipse cx="30"  cy="-8" rx="10.5" ry="15" fill="#1f3d33"/>
-        <path d="M-17,32 Q0,47 17,32" fill="none" stroke="#1f3d33" stroke-width="7.5" stroke-linecap="round"/>
-        <path class="spark" d="M137,-86 Q142,-64 164,-59 Q142,-54 137,-32 Q132,-54 110,-59 Q132,-64 137,-86 Z"/>
-        <path class="spark" d="M-129,62 Q-125.5,46 -110,42.5 Q-125.5,39 -129,23 Q-132.5,39 -148,42.5 Q-132.5,46 -129,62 Z"/>
-      </svg>
-    </div>
-    <div class="label">なんでも相談</div>
-    <div class="sub">AI Concierge</div>
+  <!-- 中央：なんでも相談（AIキャラクターが自動応答） -->
+  <div class="cell cell--invert">
+    <div class="icon" data-icon="charFlat"></div>
+    <div class="en">AI Concierge</div>
+    <div class="name">なんでも相談</div>
   </div>
 
-  <!-- ============ 右：マイページ ============ -->
+  <!-- 右：マイページ -->
   <div class="cell cell--light">
-    <div class="art">
-      <svg class="icon" width="186" height="186" viewBox="0 0 100 100">
-        <circle cx="50" cy="37" r="14.5"/>
-        <path d="M23,85 A27,27 0 0 1 77,85"/>
-      </svg>
-    </div>
-    <div class="label">マイページ</div>
-    <div class="sub">My Page</div>
+    <div class="icon" data-icon="memberLine"></div>
+    <div class="en">My Page</div>
+    <div class="name">マイページ</div>
   </div>
 
 </div>
+<script src="icons.js"></script>

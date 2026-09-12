@@ -1,70 +1,70 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>LUCEN rich menu / A - Hairline</title>
+<title>LUCEN rich menu / A - Card</title>
 <link rel="stylesheet" href="base.css">
 <style>
-  /* Pattern A : Hairline — 白一色。罫線とごく細いアイコンだけで構成した最小構成 */
-  body { background: var(--white); }
-  .menu { background: var(--white); }
+  /* A案 : Card
+     うすいグレーの地に白いカードを3枚。立体アイコン＋「説明→ボタン名」の二段組み。
+     押せる場所がいちばん分かりやすく、情報量も持たせられる型。 */
 
-  /* 区切りのヘアライン */
-  .menu::before, .menu::after {
-    content: ""; position: absolute; top: 132px; bottom: 132px; width: 1.5px;
-    background: var(--line);
+  body, .menu { background: var(--paper); }
+
+  .cell { padding: 60px 53px 70px; }
+
+  .card {
+    width: 100%; height: 100%;
+    background: var(--white);
+    border-radius: 46px;
+    box-shadow: 11px 11px 0 #e6e6e2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
   }
-  .menu::before { left: 833px; }
-  .menu::after  { left: 1667px; }
 
-  .art { height: 300px; display: flex; align-items: center; justify-content: center; }
-  .label { color: var(--ink); margin-top: 54px; }
-  .sub   { color: var(--grey); margin-top: 30px; }
+  .icon { width: 236px; height: 236px; }
+  .ic-face    { color: var(--ink);    }
+  .ic-extrude { color: var(--grey-l); }
+  .ic-detail  { color: var(--white);  }
 
-  .icon path, .icon circle { stroke: var(--ink); }
-  .char  { color: var(--green); }
-  .spark { fill: var(--green); opacity: .45; }
+  .sub {
+    font-size: 33px; font-weight: 400; line-height: 1;
+    letter-spacing: .06em; text-indent: .06em;
+    color: var(--grey); margin-top: 46px;
+  }
+  .name {
+    font-size: 60px; font-weight: 700; line-height: 1;
+    letter-spacing: .04em; text-indent: .04em;
+    color: var(--ink); margin-top: 26px;
+  }
 </style>
 
 <div class="menu">
 
-  <!-- ============ 左：LUCEN通販 ============ -->
+  <!-- 左：LUCEN通販 -->
   <div class="cell">
-    <div class="art">
-      <svg class="icon" width="186" height="186" viewBox="0 0 100 100">
-        <path d="M20,33 H80 L75.5,87 H24.5 Z"/>
-        <path d="M37.5,33 V25.5 A12.5,12.5 0 0 1 62.5,25.5 V33"/>
-      </svg>
+    <div class="card">
+      <div class="icon" data-icon="bag"></div>
+      <div class="sub">新作・人気アイテム</div>
+      <div class="name">LUCEN通販</div>
     </div>
-    <div class="label">LUCEN通販</div>
-    <div class="sub">Online Store</div>
   </div>
 
-  <!-- ============ 中央：なんでも相談 ============ -->
+  <!-- 中央：なんでも相談（AIキャラクターが自動応答） -->
   <div class="cell">
-    <div class="art">
-      <svg class="char" width="330" height="330" viewBox="-172 -150 344 300">
-        <path d="M0,-118 Q36,-36 118,0 Q36,36 0,118 Q-36,36 -118,0 Q-36,-36 0,-118 Z"
-              fill="currentColor" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/>
-        <ellipse cx="-30" cy="-8" rx="10.5" ry="15" fill="#fff"/>
-        <ellipse cx="30"  cy="-8" rx="10.5" ry="15" fill="#fff"/>
-        <path d="M-17,32 Q0,47 17,32" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round"/>
-        <path class="spark" d="M137,-86 Q142,-64 164,-59 Q142,-54 137,-32 Q132,-54 110,-59 Q132,-64 137,-86 Z"/>
-        <path class="spark" d="M-129,62 Q-125.5,46 -110,42.5 Q-125.5,39 -129,23 Q-132.5,39 -148,42.5 Q-132.5,46 -129,62 Z"/>
-      </svg>
+    <div class="card">
+      <div class="icon" data-icon="char"></div>
+      <div class="sub">AIに聞いてみる</div>
+      <div class="name">なんでも相談</div>
     </div>
-    <div class="label">なんでも相談</div>
-    <div class="sub">AI Concierge</div>
   </div>
 
-  <!-- ============ 右：マイページ ============ -->
+  <!-- 右：マイページ -->
   <div class="cell">
-    <div class="art">
-      <svg class="icon" width="186" height="186" viewBox="0 0 100 100">
-        <circle cx="50" cy="37" r="14.5"/>
-        <path d="M23,85 A27,27 0 0 1 77,85"/>
-      </svg>
+    <div class="card">
+      <div class="icon" data-icon="member"></div>
+      <div class="sub">注文履歴・会員情報</div>
+      <div class="name">マイページ</div>
     </div>
-    <div class="label">マイページ</div>
-    <div class="sub">My Page</div>
   </div>
 
 </div>
+<script src="icons.js"></script>
