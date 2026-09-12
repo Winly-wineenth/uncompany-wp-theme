@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="280" height="280">
   <title>LUCEN AI character</title>
   <path d="M21.9,73.0Q16,30 59.0,24.0L97.0,18.7Q102,18 102.7,23.0L110.2,78.3Q114,106 86.3,109.9L47.8,115.2Q28,118 25.3,98.2Z" fill="#111111"/>
-  <ellipse cx="47" cy="64" rx="7.6" ry="10.6" fill="#ffffff"/>
-  <ellipse cx="83" cy="64" rx="7.6" ry="10.6" fill="#ffffff"/>
+  <rect x="39.5" y="55" width="15" height="22" rx="5" fill="#ffffff"/>
+  <rect x="75.5" y="55" width="15" height="22" rx="5" fill="#ffffff"/>
   <g transform="translate(119,24) scale(0.1)" fill="#111111">
     <path d="M0,-118 Q36,-36 118,0 Q36,36 0,118 Q-36,36 -118,0 Q-36,-36 0,-118 Z"/>
   </g>

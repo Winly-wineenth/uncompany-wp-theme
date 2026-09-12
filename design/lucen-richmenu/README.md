@@ -3,7 +3,7 @@
 LUCEN（[lucen.shop](https://lucen.shop/) / 金属アレルギー対応ジュエリー）の
 LINE 公式アカウント用リッチメニュー。**2500 × 843 px** ちょうどで書き出し済み。
 
-配色は白・黒・グレーのみ。**A2案が本番データ**（`lucen-richmenu-a2.png`）。
+配色は白・黒・グレーのみ。**入稿データは `lucen-richmenu-a2d.png`（A2案・相談アイコン案D）**。
 
 ## 本番：A2案
 
@@ -22,10 +22,10 @@ LINE 公式アカウント用リッチメニュー。**2500 × 843 px** ちょ�
 
 | | リッチメニュー | アイコン |
 |---|---|---|
-| 現行案 | `lucen-richmenu-a2.png` | 目は中央。いちばん落ち着いて見える |
-| 案B | `lucen-richmenu-a2b.png` | 目を下寄りに。上の余白が効いてデバイス感が出る |
-| 案C | `lucen-richmenu-a2c.png` | 台形ぎみに斜めをつけた形。歪みがいちばん分かりやすい |
-| 案D | `lucen-richmenu-a2d.png` | 目を角丸の四角に。スリット状でデジタルに寄る |
+| **案D** | **`lucen-richmenu-a2d.png`** | **採用。目を角丸の四角に。スリット状でデジタルに寄る** |
+| 案A | `lucen-richmenu-a2.png` | 目は中央のまる |
+| 案B | `lucen-richmenu-a2b.png` | 目を下寄りに |
+| 案C | `lucen-richmenu-a2c.png` | 台形ぎみに斜めをつけた形 |
 
 ### 参考：初回検討分
 
@@ -87,8 +87,8 @@ postback アクション（例: `action=ai_consult`）でチャットを開始�
 ジュエリーの「輝き」を起点にしたマスコット。1色 + 白い目だけで構成しているので、
 小さく縮めても潰れず、LINEのアイコン・スタンプ・サイト内のチャットボタンにも流用できる。
 
-- `assets/lucen-ai-character-square.svg` — **本番形（A2案）**／白背景用
-- `assets/lucen-ai-character-square-white.svg` — 本番形／黒背景用
+- `assets/lucen-ai-character-square.svg` — **確定形（案D）**／白背景用
+- `assets/lucen-ai-character-square-white.svg` — 確定形／黒背景用
 - `assets/lucen-ai-character-black.svg` — 四芒星（初回検討分）
 - `assets/lucen-ai-character-white.svg` — 四芒星／黒背景用
 - `assets/lucen-ai-character-grey.svg` — 四芒星／グレー
