@@ -24,7 +24,7 @@ vp=$("$CHROME" --headless --disable-gpu --no-sandbox --window-size=$W,$H \
 offset=$(( H - ${vp:-$H} ))
 echo "viewport offset: ${offset}px (window-size height = $(( H + offset )))"
 
-for p in a a2 a3 b c; do
+for p in a a2 a2b a2c a2d a3 b c; do
   [ -f "$SRC/pattern-$p.html" ] || continue
   "$CHROME" --headless --disable-gpu --no-sandbox --hide-scrollbars \
     --force-device-scale-factor=1 \
@@ -33,3 +33,11 @@ for p in a a2 a3 b c; do
   python3 "$SRC/pngcrop.py" "$OUT/lucen-richmenu-$p.png" $W $H > /dev/null
   echo "  pattern-$p.html -> lucen-richmenu-$p.png (${W}x${H})"
 done
+
+# 検討用の比較シート（入稿データではない）
+"$CHROME" --headless --disable-gpu --no-sandbox --hide-scrollbars \
+  --force-device-scale-factor=1 \
+  --window-size=2000,$(( 760 + offset )) --virtual-time-budget=5000 \
+  --screenshot="$OUT/lucen-ai-character-variants.png" "file://$SRC/variants.html" 2>/dev/null
+python3 "$SRC/pngcrop.py" "$OUT/lucen-ai-character-variants.png" 2000 760 > /dev/null
+echo "  variants.html -> lucen-ai-character-variants.png (2000x760)"

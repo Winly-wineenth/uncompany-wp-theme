@@ -14,12 +14,18 @@
   var svg = function (inner) {
     return '<svg viewBox="0 0 140 140" width="100%" height="100%">' + inner + '</svg>';
   };
-  /* 四角・まるの中に入れる顔。口は置かず、目だけで表情をつくる */
-  var FACE =
-    '<g class="ic-detail">' +
-      '<ellipse cx="47" cy="64" rx="7.6" ry="10.6"/>' +
-      '<ellipse cx="83" cy="64" rx="7.6" ry="10.6"/>' +
-    '</g>';
+  /* 顔。口は置かず、目だけで表情をつくる。
+       cy … 目の高さ / square … 角丸の四角い目にする / dx … 左右のずらし */
+  var eyes = function (cy, square, dx) {
+    dx = dx || 0;
+    return '<g class="ic-detail">' + (square
+      ? '<rect x="' + (39.5 + dx) + '" y="' + (cy - 11) + '" width="15" height="22" rx="5"/>' +
+        '<rect x="' + (75.5 + dx) + '" y="' + (cy - 11) + '" width="15" height="22" rx="5"/>'
+      : '<ellipse cx="' + (47 + dx) + '" cy="' + cy + '" rx="7.6" ry="10.6"/>' +
+        '<ellipse cx="' + (83 + dx) + '" cy="' + cy + '" rx="7.6" ry="10.6"/>'
+    ) + '</g>';
+  };
+  var FACE = eyes(64);
   var face = function (v) { return '<g transform="translate(64,78) scale(' + v + ')"><path d="' + SPARK + '"/></g>'; };
 
 
@@ -47,6 +53,21 @@
     [[16, 30], [102, 18], [114, 106], [28, 118]],
     [44, 5, 28, 20]
   );
+
+  /* 台形ぎみに斜めをつけたボディ */
+  var BODY_TRAPEZOID = roundedPoly(
+    [[36, 18], [102, 27], [116, 110], [20, 113]],
+    [20, 13, 26, 22]
+  );
+
+  var spark = function (x, y, k) {
+    return '<g class="ic-face" transform="translate(' + x + ',' + y + ') scale(' + k + ')">' +
+             '<path d="' + SPARK + '"/></g>';
+  };
+  var solid = function (d) {
+    return '<g class="ic-extrude" transform="translate(9,9)"><path d="' + d + '"/></g>' +
+           '<g class="ic-face"><path d="' + d + '"/></g>';
+  };
 
   var ICONS = {
 
@@ -86,22 +107,26 @@
     ),
 
 
-    /* ---- キャラクターの形ちがい（A案の中央で比較用） -------------- */
+    /* ---- 相談アイコン（中央）の形ちがい ---------------------------- */
 
-    /* 角丸の四角 */
-    charSquare: svg(
-      '<g class="ic-extrude" transform="translate(9,9)"><rect x="20" y="24" width="90" height="90" rx="28"/></g>' +
-      '<g class="ic-face"><rect x="20" y="24" width="90" height="90" rx="28"/></g>' +
-      FACE +
-      '<g class="ic-face" transform="translate(106,28) scale(0.115)"><path d="' + SPARK + '"/></g>'
-    ),
+    /* 左右非対称に歪ませた角丸のボディ（現行案） */
+    charSquare: svg(solid(BODY) + eyes(64) + spark(119, 24, 0.1)),
 
-    /* まる */
+    /* 案B：目を下寄りに置いて、上に余白をとった形 */
+    charLowEyes: svg(solid(BODY) + eyes(84) + spark(119, 24, 0.1)),
+
+    /* 案C：台形ぎみに斜めをつけた形 */
+    charTrapezoid: svg(solid(BODY_TRAPEZOID) + eyes(72, false, 3) + spark(121, 22, 0.1)),
+
+    /* 案D：目を角丸の四角にしてデジタルに寄せた形 */
+    charSquareEyes: svg(solid(BODY) + eyes(66, true) + spark(119, 24, 0.1)),
+
+    /* まる（初回検討分） */
     charCircle: svg(
       '<g class="ic-extrude" transform="translate(9,9)"><circle cx="64" cy="68" r="45"/></g>' +
       '<g class="ic-face"><circle cx="64" cy="68" r="45"/></g>' +
       FACE +
-      '<g class="ic-face" transform="translate(108,26) scale(0.115)"><path d="' + SPARK + '"/></g>'
+      spark(116, 26, 0.105)
     ),
 
     /* ---- 線画（B案・C案） ------------------------------------------ */

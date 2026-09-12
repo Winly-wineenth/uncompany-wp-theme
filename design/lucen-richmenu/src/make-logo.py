@@ -21,10 +21,11 @@ RATIO = 4.14          # 字面の 幅 ÷ キャップハイト（支給画像か
 CONDENSE = 0.88       # 支給ロゴは Bodoni より字幅が狭いので横に詰める
 WGHT, OPSZ = 445, 96  # 横に詰めた分だけ字面が細るのでウェイトで補正
 
-# E を丸い形（C ＋ 横棒）で作る場合は True にする
-ROUND_E = False
-BAR_LEFT, BAR_RIGHT = 0.20, 0.86   # C の字幅に対する横棒の左右
-BAR_MID, BAR_WEIGHT = 0.475, 0.075  # キャップハイトに対する横棒の中心高さと太さ
+# 支給ロゴの E は、C の輪郭に横棒を渡した丸い形をしている
+ROUND_E = True
+E_NARROW = 0.93                     # E は C よりわずかに細い
+BAR_LEFT, BAR_RIGHT = 0.17, 0.80    # C の字幅に対する横棒の左右
+BAR_MID, BAR_WEIGHT = 0.470, 0.068  # キャップハイトに対する横棒の中心高さと太さ
 
 
 def main(src, dst):
@@ -35,6 +36,8 @@ def main(src, dst):
     cap = font["OS/2"].sCapHeight
 
     names = [cmap[ord("C" if (ch == "E" and ROUND_E) else ch)] for ch in WORD]
+    # 字ごとの横の詰め（E だけ少し細くする）
+    squeeze = [CONDENSE * (E_NARROW if (ch == "E" and ROUND_E) else 1) for ch in WORD]
 
     def bounds(name):
         pen = BoundsPen(glyphs)
@@ -43,19 +46,19 @@ def main(src, dst):
 
     # ロゴタイプなので送り幅ではなく「字面どうしの間隔」を一定にして組む。
     # その間隔は、全体の縦横比が支給画像と揃うように逆算する。
-    inked = [(bounds(n)[2] - bounds(n)[0]) * CONDENSE for n in names]
+    inked = [(bounds(n)[2] - bounds(n)[0]) * q for n, q in zip(names, squeeze)]
     gap = (RATIO * cap - sum(inked)) / (len(names) - 1)
 
-    parts, x = [], -bounds(names[0])[0] * CONDENSE
+    parts, x = [], -bounds(names[0])[0] * squeeze[0]
     for i, (ch, name) in enumerate(zip(WORD, names)):
         pen = SVGPathPen(glyphs)
         glyphs[name].draw(pen)
         parts.append(
-            f'<path transform="translate({x:.1f},0) scale({CONDENSE},1)" d="{pen.getCommands()}"/>'
+            f'<path transform="translate({x:.1f},0) scale({squeeze[i]},1)" d="{pen.getCommands()}"/>'
         )
 
         if ch == "E" and ROUND_E:
-            x0, _, x1, _ = (v * CONDENSE for v in bounds(name))
+            x0, _, x1, _ = (v * squeeze[i] for v in bounds(name))
             w = x1 - x0
             bx, bw = x0 + w * BAR_LEFT, w * (BAR_RIGHT - BAR_LEFT)
             bh = cap * BAR_WEIGHT
@@ -66,7 +69,7 @@ def main(src, dst):
 
         if i + 1 < len(names):
             # 次の字は「今の字の右端 + 一定の間隔」から字面が始まるように置く
-            x += (bounds(name)[2] + gap / CONDENSE - bounds(names[i + 1])[0]) * CONDENSE
+            x += bounds(name)[2] * squeeze[i] + gap - bounds(names[i + 1])[0] * squeeze[i + 1]
 
     width = sum(inked) + gap * (len(names) - 1)
     svg = (

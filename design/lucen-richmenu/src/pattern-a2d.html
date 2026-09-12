@@ -1,0 +1,80 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>LUCEN rich menu / A2d - Card</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* A案 : Card
+     うすいグレーの地に白いカードを3枚。立体アイコン＋「説明 → ボタン名」の二段組み。
+     押せる場所がいちばん分かりやすく、情報量も持たせられる型。
+
+     中央のアイコンは形ちがいを 3種 用意している（pattern-a / a2 / a3）。 */
+
+  body, .menu { background: var(--paper); }
+
+  .cell { padding: 60px 53px 70px; }
+
+  .card {
+    width: 100%; height: 100%;
+    background: var(--white);
+    border-radius: 46px;
+    box-shadow: 11px 11px 0 #e6e6e2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+
+  .icon { width: 236px; height: 236px; }
+  .ic-face    { color: var(--ink);    }
+  .ic-extrude { color: var(--grey-l); }
+  .ic-detail  { color: var(--white);  }
+
+  /* 左はアイコンの代わりに LUCEN のロゴタイプを置く。
+     正式なロゴデータが支給されたら assets/lucen-logo.svg を差し替えるだけでよい。 */
+  .logo {
+    width: 236px; height: 236px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo img { width: 470px; height: auto; }
+
+  .sub {
+    font-size: 43px; font-weight: 400; line-height: 1;
+    letter-spacing: .06em; text-indent: .06em;
+    color: var(--grey); margin-top: 44px;
+  }
+  .name {
+    font-size: 78px; font-weight: 700; line-height: 1;
+    letter-spacing: .04em; text-indent: .04em;
+    color: var(--ink); margin-top: 26px;
+  }
+</style>
+
+<div class="menu">
+
+  <!-- 左：ショップを見る -->
+  <div class="cell">
+    <div class="card">
+      <div class="logo"><img src="../assets/lucen-logo.svg" alt="LUCEN"></div>
+      <div class="sub">新作・人気アイテム</div>
+      <div class="name">ショップを見る</div>
+    </div>
+  </div>
+
+  <!-- 中央：なんでも相談（AIキャラクターが自動応答） -->
+  <div class="cell">
+    <div class="card">
+      <div class="icon" data-icon="charSquareEyes"></div>
+      <div class="sub">AIと人間がすぐにご返答</div>
+      <div class="name">なんでも相談</div>
+    </div>
+  </div>
+
+  <!-- 右：マイページ -->
+  <div class="cell">
+    <div class="card">
+      <div class="icon" data-icon="member"></div>
+      <div class="sub">注文履歴・会員情報</div>
+      <div class="name">マイページ</div>
+    </div>
+  </div>
+
+</div>
+<script src="icons.js"></script>

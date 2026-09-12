@@ -1,0 +1,67 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>LUCEN AI character - variants</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* 相談アイコンの形ちがい比較シート（入稿データではなく検討用） */
+  html, body { width: 2000px; height: 760px; }
+  body { background: var(--white); }
+
+  .sheet {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    width: 2000px; height: 760px; align-items: center;
+  }
+  .col { text-align: center; }
+
+  .big   { width: 300px; height: 300px; margin: 0 auto; }
+  .small { width: 92px;  height: 92px;  margin: 26px auto 0; }
+  .icon svg { display: block; }
+  .ic-face { color: var(--ink); }
+  .ic-extrude { color: var(--grey-l); }
+  .ic-detail { color: var(--white); }
+
+  .tag {
+    font-size: 27px; font-weight: 700; color: var(--ink);
+    letter-spacing: .06em; margin-top: 40px;
+  }
+  .note {
+    font-size: 22px; font-weight: 400; color: var(--grey);
+    letter-spacing: .04em; line-height: 1.5; margin-top: 14px;
+  }
+  .cap {
+    font-family: 'Raleway', sans-serif; font-size: 17px;
+    letter-spacing: .3em; color: #b6b6b1; margin-top: 12px;
+  }
+</style>
+
+<div class="sheet">
+  <div class="col">
+    <div class="icon big" data-icon="charSquare"></div>
+    <div class="tag">現行案</div>
+    <div class="note">目は中央。いちばん<br>落ち着いて見える</div>
+    <div class="icon small" data-icon="charSquare"></div>
+    <div class="cap">92PX</div>
+  </div>
+  <div class="col">
+    <div class="icon big" data-icon="charLowEyes"></div>
+    <div class="tag">案B｜目を下に</div>
+    <div class="note">上の余白が効いて<br>デバイス感が出る</div>
+    <div class="icon small" data-icon="charLowEyes"></div>
+    <div class="cap">92PX</div>
+  </div>
+  <div class="col">
+    <div class="icon big" data-icon="charTrapezoid"></div>
+    <div class="tag">案C｜台形</div>
+    <div class="note">斜めの辺でいちばん<br>歪みが分かりやすい</div>
+    <div class="icon small" data-icon="charTrapezoid"></div>
+    <div class="cap">92PX</div>
+  </div>
+  <div class="col">
+    <div class="icon big" data-icon="charSquareEyes"></div>
+    <div class="tag">案D｜四角い目</div>
+    <div class="note">目がスリット状になり<br>デジタルに寄る</div>
+    <div class="icon small" data-icon="charSquareEyes"></div>
+    <div class="cap">92PX</div>
+  </div>
+</div>
+<script src="icons.js"></script>
