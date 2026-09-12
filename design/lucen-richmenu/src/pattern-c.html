@@ -1,0 +1,82 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>LUCEN rich menu / C - Soft Card</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Pattern C : Soft Card — オフホワイト地に白いカードを3枚並べた、やわらかいレイアウト */
+  body { background: var(--paper); }
+  .menu { background: var(--paper); }
+
+  .cell { padding: 26px 13px; }
+  .cell:first-child { padding-left: 26px; }
+  .cell:last-child  { padding-right: 26px; }
+
+  .card {
+    width: 100%; height: 100%;
+    background: var(--white);
+    border-radius: 30px;
+    box-shadow: 0 8px 30px rgba(20,20,20,.045);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .card--ai { background: #f1f5f3; }
+
+  .art { height: 286px; display: flex; align-items: center; justify-content: center; }
+  .label { color: var(--ink); margin-top: 48px; }
+  .sub   { color: var(--grey); margin-top: 28px; }
+
+  .icon path, .icon circle { stroke: var(--ink); }
+  .char  { color: var(--green); }
+  .spark { fill: var(--green); opacity: .4; }
+</style>
+
+<div class="menu">
+
+  <!-- ============ 左：LUCEN通販 ============ -->
+  <div class="cell">
+    <div class="card">
+      <div class="art">
+        <svg class="icon" width="176" height="176" viewBox="0 0 100 100">
+          <path d="M20,33 H80 L75.5,87 H24.5 Z"/>
+          <path d="M37.5,33 V25.5 A12.5,12.5 0 0 1 62.5,25.5 V33"/>
+        </svg>
+      </div>
+      <div class="label">LUCEN通販</div>
+      <div class="sub">Online Store</div>
+    </div>
+  </div>
+
+  <!-- ============ 中央：なんでも相談 ============ -->
+  <div class="cell">
+    <div class="card card--ai">
+      <div class="art">
+        <svg class="char" width="314" height="314" viewBox="-172 -150 344 300">
+          <path d="M0,-118 Q36,-36 118,0 Q36,36 0,118 Q-36,36 -118,0 Q-36,-36 0,-118 Z"
+                fill="currentColor" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/>
+          <ellipse cx="-30" cy="-8" rx="10.5" ry="15" fill="#f1f5f3"/>
+          <ellipse cx="30"  cy="-8" rx="10.5" ry="15" fill="#f1f5f3"/>
+          <path d="M-17,32 Q0,47 17,32" fill="none" stroke="#f1f5f3" stroke-width="7.5" stroke-linecap="round"/>
+          <path class="spark" d="M137,-86 Q142,-64 164,-59 Q142,-54 137,-32 Q132,-54 110,-59 Q132,-64 137,-86 Z"/>
+          <path class="spark" d="M-129,62 Q-125.5,46 -110,42.5 Q-125.5,39 -129,23 Q-132.5,39 -148,42.5 Q-132.5,46 -129,62 Z"/>
+        </svg>
+      </div>
+      <div class="label">なんでも相談</div>
+      <div class="sub">AI Concierge</div>
+    </div>
+  </div>
+
+  <!-- ============ 右：マイページ ============ -->
+  <div class="cell">
+    <div class="card">
+      <div class="art">
+        <svg class="icon" width="176" height="176" viewBox="0 0 100 100">
+          <circle cx="50" cy="37" r="14.5"/>
+          <path d="M23,85 A27,27 0 0 1 77,85"/>
+        </svg>
+      </div>
+      <div class="label">マイページ</div>
+      <div class="sub">My Page</div>
+    </div>
+  </div>
+
+</div>

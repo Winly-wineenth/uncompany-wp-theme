@@ -1,0 +1,66 @@
+/* LUCEN LINE rich menu - shared base
+   Canvas: 2500 x 843 px (LINE rich menu "large" / 3-column template) */
+
+:root {
+  --white:  #ffffff;
+  --paper:  #f5f4f1;  /* off-white base */
+  --ink:    #141414;  /* brand black    */
+  --green:  #1f3d33;  /* deep green accent */
+  --green-d:#173029;
+  --grey:   #8e8e88;  /* sub copy grey  */
+  --line:   #e5e4df;  /* hairline       */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 2500px; height: 843px; overflow: hidden; }
+
+body {
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.menu {
+  width: 2500px;
+  height: 843px;
+  display: grid;
+  grid-template-columns: 833px 834px 833px;
+  position: relative;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 843px;
+  position: relative;
+}
+
+/* --- icon --- */
+.icon { display: block; }
+.icon path, .icon circle, .icon line, .icon rect {
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- type --- */
+.label {
+  font-weight: 500;
+  font-size: 66px;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  line-height: 1;
+}
+.sub {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  line-height: 1;
+  text-transform: uppercase;
+}
