@@ -3,18 +3,26 @@
 LUCEN（[lucen.shop](https://lucen.shop/) / 金属アレルギー対応ジュエリー）の
 LINE 公式アカウント用リッチメニュー。**2500 × 843 px** ちょうどで書き出し済み。
 
-配色は白・黒・グレーのみ。**A案（Card）で進行中**。
+配色は白・黒・グレーのみ。**A2案が本番データ**（`lucen-richmenu-a2.png`）。
 
-## 本命：A案 — 中央アイコンの形ちがい3種
+## 本番：A2案
 
 うすいグレーの地に白いカードを3枚。立体アイコン＋「説明 → ボタン名」の二段組み。
-3枚とも左右・文字組みは共通で、**中央のAIキャラクターの形だけが違う**。
+
+中央のAIキャラクターは、**左右対称をあえて崩した**シルエットにしている。
+角の丸みを一つずつ変え（左上は大きく、右上はほぼ直角）、輪郭もわずかに傾けることで、
+整い過ぎない「作られた形」に見せる狙い。口は置かず、目だけで表情をつくっている。
+右上の輝きは吹き出しの尻尾のように角へ寄せ、相談ボタンであることを示している。
+
+`src/icons.js` の `BODY` にある頂点座標と角の丸みの数値を書き換えれば、
+シルエットはいくらでも調整できる。
+
+### 参考：中央アイコンの形ちがい（初回検討分）
 
 | | ファイル | 中央のかたち |
 |---|---|---|
-| **A** | `lucen-richmenu-a.png` | 四芒星（ジュエリーの輝き。ブランドとのつながりがいちばん強い） |
-| **A2** | `lucen-richmenu-a2.png` | 角丸の四角（右上の輝きが吹き出しの尻尾に見え、チャット感が出る） |
-| **A3** | `lucen-richmenu-a3.png` | まる（いちばん親しみやすく、アイコンとしての収まりが良い） |
+| A | `lucen-richmenu-a.png` | 四芒星 |
+| A3 | `lucen-richmenu-a3.png` | まる |
 
 ### 各ボタン
 
@@ -40,10 +48,11 @@ LINE 公式アカウント用リッチメニュー。**2500 × 843 px** ちょ�
 ## ロゴについて
 
 `assets/lucen-logo.svg` は、いただいたロゴ画像に合わせて Bodoni Moda（SIL OFL）から
-**近似で起こしたもの**。特徴的な丸い E は C のアウトラインに横棒を足して再現している。
+**近似で起こしたもの**。字面の縦横比（幅 ÷ キャップハイト = 4.14）を画像から実測し、
+字幅と字間をそれに合わせている。書体そのものは支給ロゴと別物なので、細部は一致しない。
 
 正式なロゴデータ（AI / SVG）が支給されたら、**このファイルを差し替えるだけ**でよい。
-`src/make-logo.py` は近似版を作り直すためのスクリプトで、字間や横棒の位置は
+`src/make-logo.py` は近似版を作り直すためのスクリプトで、縦横比・字幅・ウェイトは
 ファイル冒頭の定数で調整できる。
 
 ## タップ領域（LINE Official Account Manager / Messaging API 共通）
@@ -61,14 +70,15 @@ postback アクション（例: `action=ai_consult`）でチャットを開始�
 
 ## AIキャラクター
 
-ジュエリーの「輝き」を起点にしたマスコット。1色 + 白い目と口だけで構成しているので、
+ジュエリーの「輝き」を起点にしたマスコット。1色 + 白い目だけで構成しているので、
 小さく縮めても潰れず、LINEのアイコン・スタンプ・サイト内のチャットボタンにも流用できる。
 
-- `assets/lucen-ai-character-black.svg` — 四芒星／白背景用（基本形）
+- `assets/lucen-ai-character-square.svg` — **本番形（A2案）**／白背景用
+- `assets/lucen-ai-character-square-white.svg` — 本番形／黒背景用
+- `assets/lucen-ai-character-black.svg` — 四芒星（初回検討分）
 - `assets/lucen-ai-character-white.svg` — 四芒星／黒背景用
-- `assets/lucen-ai-character-grey.svg` — 四芒星／補助的に使うとき
-- `assets/lucen-ai-character-square.svg` — 角丸の四角
-- `assets/lucen-ai-character-circle.svg` — まる
+- `assets/lucen-ai-character-grey.svg` — 四芒星／グレー
+- `assets/lucen-ai-character-circle.svg` — まる（初回検討分）
 
 ## カラー
 
@@ -102,7 +112,7 @@ src/render.sh
 |---|---|
 | `src/base.css` | 共通の土台（カラー変数・3分割グリッド・フォント） |
 | `src/icons.js` | アイコン定義。立体版・線画版・キャラクターの形ちがいを1か所にまとめている |
-| `src/pattern-a/a2/a3.html` | A案。中央のアイコン指定だけが違う |
+| `src/pattern-a2.html` | **本番**。`pattern-a` / `a3` は中央のアイコン指定だけが違う検討分 |
 | `src/pattern-b/c.html` | 初回比較用の他案 |
 | `src/make-logo.py` | ロゴ近似版の生成 |
 | `src/pngcrop.py` | ヘッドレス特有のウィンドウ枠分の余白を落として 2500×843 ちょうどに揃える |

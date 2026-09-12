@@ -14,14 +14,39 @@
   var svg = function (inner) {
     return '<svg viewBox="0 0 140 140" width="100%" height="100%">' + inner + '</svg>';
   };
-  /* 四角・まるの中に入れる顔（中心 68,74 のボディに合わせてある） */
+  /* 四角・まるの中に入れる顔。口は置かず、目だけで表情をつくる */
   var FACE =
     '<g class="ic-detail">' +
-      '<ellipse cx="48" cy="63" rx="5.6" ry="7.8"/>' +
-      '<ellipse cx="82" cy="63" rx="5.6" ry="7.8"/>' +
-      '<path d="M56,84 Q65,92 74,84" fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/>' +
+      '<ellipse cx="47" cy="64" rx="7.6" ry="10.6"/>' +
+      '<ellipse cx="83" cy="64" rx="7.6" ry="10.6"/>' +
     '</g>';
   var face = function (v) { return '<g transform="translate(64,78) scale(' + v + ')"><path d="' + SPARK + '"/></g>'; };
+
+
+  /* 頂点ごとに丸みの大きさを変えられる多角形。
+     すべての角を同じ半径で丸めると整い過ぎるので、
+     アイコンのシルエットはこれで少し歪ませている。 */
+  function roundedPoly(pts, radii) {
+    var n = pts.length, d = [];
+    for (var i = 0; i < n; i++) {
+      var cur = pts[i], prev = pts[(i + n - 1) % n], next = pts[(i + 1) % n];
+      var v1 = [prev[0] - cur[0], prev[1] - cur[1]];
+      var v2 = [next[0] - cur[0], next[1] - cur[1]];
+      var l1 = Math.hypot(v1[0], v1[1]), l2 = Math.hypot(v2[0], v2[1]);
+      var r = Math.min(radii[i], l1 / 2, l2 / 2);
+      var a = [cur[0] + v1[0] / l1 * r, cur[1] + v1[1] / l1 * r];
+      var b = [cur[0] + v2[0] / l2 * r, cur[1] + v2[1] / l2 * r];
+      d.push((i ? 'L' : 'M') + a[0].toFixed(1) + ',' + a[1].toFixed(1) +
+             'Q' + cur[0] + ',' + cur[1] + ' ' + b[0].toFixed(1) + ',' + b[1].toFixed(1));
+    }
+    return d.join('') + 'Z';
+  }
+
+  /* AIキャラクターのボディ（左右非対称／角の丸みもばらばら） */
+  var BODY = roundedPoly(
+    [[16, 30], [102, 18], [114, 106], [28, 118]],
+    [44, 5, 28, 20]
+  );
 
   var ICONS = {
 
@@ -43,9 +68,8 @@
       '<g class="ic-extrude" transform="translate(9,9)">' + face(0.46) + '</g>' +
       '<g class="ic-face">' + face(0.46) + '</g>' +
       '<g class="ic-detail" transform="translate(64,78) scale(0.46)">' +
-        '<ellipse cx="-30" cy="-8" rx="10.5" ry="15"/>' +
-        '<ellipse cx="30"  cy="-8" rx="10.5" ry="15"/>' +
-        '<path d="M-17,32 Q0,47 17,32" fill="none" stroke="currentColor" stroke-width="7.5" stroke-linecap="round"/>' +
+        '<ellipse cx="-30" cy="2" rx="11.5" ry="16.5"/>' +
+        '<ellipse cx="30"  cy="2" rx="11.5" ry="16.5"/>' +
       '</g>' +
       '<g class="ic-face" transform="translate(104,30) scale(0.115)"><path d="' + SPARK + '"/></g>'
     ),
@@ -74,8 +98,8 @@
 
     /* まる */
     charCircle: svg(
-      '<g class="ic-extrude" transform="translate(9,9)"><circle cx="65" cy="69" r="45"/></g>' +
-      '<g class="ic-face"><circle cx="65" cy="69" r="45"/></g>' +
+      '<g class="ic-extrude" transform="translate(9,9)"><circle cx="64" cy="68" r="45"/></g>' +
+      '<g class="ic-face"><circle cx="64" cy="68" r="45"/></g>' +
       FACE +
       '<g class="ic-face" transform="translate(108,26) scale(0.115)"><path d="' + SPARK + '"/></g>'
     ),

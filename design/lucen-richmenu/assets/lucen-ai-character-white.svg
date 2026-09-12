@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-128 -128 256 256" width="256" height="256">
-  <title>LUCEN AI character</title>
+  <title>LUCEN AI character (star)</title>
   <path d="M0,-118 Q36,-36 118,0 Q36,36 0,118 Q-36,36 -118,0 Q-36,-36 0,-118 Z" fill="#ffffff"/>
-  <ellipse cx="-30" cy="-8" rx="10.5" ry="15" fill="#111111"/>
-  <ellipse cx="30"  cy="-8" rx="10.5" ry="15" fill="#111111"/>
-  <path d="M-17,32 Q0,47 17,32" fill="none" stroke="#111111" stroke-width="7.5" stroke-linecap="round"/>
+  <ellipse cx="-30" cy="2" rx="11.5" ry="16.5" fill="#111111"/>
+  <ellipse cx="30"  cy="2" rx="11.5" ry="16.5" fill="#111111"/>
 </svg>
